@@ -28,7 +28,7 @@ namespace ConsoleAdventure.Project
 			//if failed to go anywhere, stop code execution
 			if (from == to)
 			{
-				Messages.Add("You can't go that way.");
+				Messages.Add("You can't do that.");
 			}
 		}
 

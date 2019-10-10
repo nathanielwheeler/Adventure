@@ -30,10 +30,14 @@ namespace ConsoleAdventure.Project.Models
 
 		public string GetTemplate()
 		{
-			string template = $"\n\t{Name.ToUpper()}\n\n\t{Description}\n\n\tObvious exits are:\n";
-			foreach (var exit in Exits)
+			string template = $"\n\t{Name.ToUpper()}\n\n\t{Description}\n\n";
+			if (Exits.Count > 0)
 			{
-				template += "\t\t" + exit.Key.ToUpper() + "\n";
+				template += "\tObvious exits are:\n";
+				foreach (var exit in Exits)
+				{
+					template += "\t\t" + exit.Key.ToUpper() + "\n";
+				}
 			}
 			return template;
 		}
