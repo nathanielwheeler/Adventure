@@ -46,13 +46,13 @@ namespace ConsoleAdventure.Project.Models
 			);
 
 			//Add Connections
-			start.AddExit("EAST", middle);
-			middle.AddExit("WEST", start);
-			middle.AddExit("NORTH", lose);
-			middle.AddExit("SOUTH", win);
-			middle.AddExit("DENNIS", dennis);
-			win.AddExit("NORTH", middle);
-			dennis.AddExit("NOT DENNIS", dennis);
+			start.AddExit("east", middle);
+			middle.AddExit("west", start);
+			middle.AddExit("north", lose);
+			middle.AddExit("south", win);
+			middle.AddExit("dennis", dennis);
+			win.AddExit("north", middle);
+			dennis.AddExit("not dennis", dennis);
 
 
 
