@@ -10,11 +10,7 @@ namespace ConsoleAdventure.Project
 		private IGame _game { get; set; }
 
 		public List<string> Messages { get; set; }
-		public GameService()
-		{
-			_game = new Game();
-			Messages = new List<string>();
-		}
+
 		public void Go(string direction)
 		{
 
@@ -65,6 +61,20 @@ namespace ConsoleAdventure.Project
 		public void UseItem(string itemName)
 		{
 			throw new System.NotImplementedException();
+		}
+
+
+
+
+
+
+
+
+
+		public GameService()
+		{
+			_game = new Game();
+			Messages = new List<string>();
 		}
 	}
 }

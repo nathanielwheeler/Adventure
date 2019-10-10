@@ -9,6 +9,7 @@ namespace ConsoleAdventure.Project.Models
 		public string Description { get; set; }
 		public List<Item> Items { get; set; }
 		public Dictionary<string, IRoom> Exits { get; set; }
+		//TODO make a dictionary or list that can reference a conditional action command in this room.
 
 		public void AddDoor(string exit, IRoom room)
 		{

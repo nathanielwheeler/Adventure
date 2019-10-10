@@ -31,7 +31,7 @@ namespace ConsoleAdventure.Project.Controllers
 			//IE: take silver key => command = "take" option = "silver key"
 			switch (command)
 			{
-				#region Directions
+				#region Directional Actions
 				case "north":
 				case "n":
 					_gameService.Go("north");
@@ -53,10 +53,7 @@ namespace ConsoleAdventure.Project.Controllers
 					_gameService.Go(option);
 					break;
 				#endregion
-				case "help":
-				case "h":
-					_gameService.Help();
-					break;
+				#region Character Actions
 				case "inventory":
 				case "i":
 					_gameService.Inventory();
@@ -65,6 +62,12 @@ namespace ConsoleAdventure.Project.Controllers
 				case "ls":
 				case "l":
 					_gameService.Look();
+					break;
+				#endregion
+				#region Game Actions
+				case "help":
+				case "h":
+					_gameService.Help();
 					break;
 				case "q":
 				case "quit":
@@ -76,6 +79,7 @@ namespace ConsoleAdventure.Project.Controllers
 				case "r":
 					_gameService.Reset();
 					break;
+					#endregion
 			}
 		}
 

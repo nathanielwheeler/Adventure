@@ -41,7 +41,7 @@ namespace ConsoleAdventure.Project.Models
 			);
 			Room dennis = new Room(
 				"Dennis",
-				"Ye arrive at Dennis. He wears a sporty frock coat and a long jimberjam. He paces about nervously. Obvious exits are NOT DENIS."
+				"Ye arrive at Dennis. He wears a sporty frock coat and a long jimberjam. He paces about nervously. Obvious exits are NOT DENNIS."
 			);
 
 			//Add Connections
