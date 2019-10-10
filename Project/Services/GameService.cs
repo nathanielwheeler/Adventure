@@ -11,17 +11,44 @@ namespace ConsoleAdventure.Project
 
 		public List<string> Messages { get; set; }
 
+		public string GetGameDetails()
+		{
+			return _game.CurrentRoom.GetTemplate();
+		}
+
 
 
 		#region Directional Action
 		public void Go(string direction)
 		{
 			//change destination
+			string from = _game.CurrentRoom.Name;
 			_game.CurrentRoom = _game.CurrentRoom.Go(direction);
-
+			string to = _game.CurrentRoom.Name;
 			//if failed to go anywhere, stop code execution
+			if (from == to)
+			{
+				Messages.Add("You can't go that way.");
+			}
 		}
 
+		// public void Fly(string airportCode)
+		// {
+		// 	//change destination
+		// 	string from = _game.CurrentAirport.Name;
+		// 	_game.CurrentAirport = _game.CurrentAirport.Fly(airportCode);
+		// 	string to = _game.CurrentAirport.Name;
+
+		// 	//If failed to go anywhere, stop code execution
+		// 	if (from == to)
+		// 	{
+		// 		Messages.Add("Invalid Destination");
+		// 		return;
+		// 	}
+		// 	Messages.Add($"Traveled from {from} to {to}");
+		// 	UnloadCargo();
+		// 	LoadCargo();
+		// }
 
 		#endregion
 		#region Character Actions
@@ -75,7 +102,7 @@ namespace ConsoleAdventure.Project
 
 		public void Setup(string playerName)
 		{
-			throw new System.NotImplementedException();
+			_game.CurrentPlayer = new Player(playerName);
 		}
 
 		#endregion

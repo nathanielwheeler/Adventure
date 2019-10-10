@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ConsoleAdventure.Project.Interfaces;
 
@@ -22,9 +23,19 @@ namespace ConsoleAdventure.Project.Models
 		}
 
 
-		public void AddDoor(string exit, IRoom room)
+		public void AddExit(string exit, IRoom room)
 		{
 			Exits.Add(exit, room);
+		}
+
+		public string GetTemplate()
+		{
+			string template = $"\n\t{Name.ToUpper()}\n\n\t{Description}\n\n\tObvious exits are:\n";
+			foreach (var exit in Exits)
+			{
+				template += "\t\t" + exit.Key + "\n";
+			}
+			return template;
 		}
 
 		public Room(string name, string description)

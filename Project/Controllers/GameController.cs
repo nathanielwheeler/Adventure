@@ -13,6 +13,8 @@ namespace ConsoleAdventure.Project.Controllers
 		//NOTE Makes sure everything is called to finish Setup and Starts the Game loop
 		public void Run()
 		{
+			System.Console.Write("Enter your name > ");
+			_gameService.Setup(Console.ReadLine());
 			while (true)
 			{
 				Print();
@@ -23,7 +25,7 @@ namespace ConsoleAdventure.Project.Controllers
 		//NOTE Gets the user input, calls the appropriate command, and passes on the option if needed.
 		public void GetUserInput()
 		{
-			Console.WriteLine("What would you like to do?");
+			Console.Write("What would you like to do?\n > ");
 			string input = Console.ReadLine().ToLower() + " ";
 			string command = input.Substring(0, input.IndexOf(" "));
 			string option = input.Substring(input.IndexOf(" ") + 1).Trim();
@@ -31,28 +33,6 @@ namespace ConsoleAdventure.Project.Controllers
 			//IE: take silver key => command = "take" option = "silver key"
 			switch (command)
 			{
-				#region Directional Actions
-				case "north":
-				case "n":
-					_gameService.Go("north");
-					break;
-				case "east":
-				case "e":
-					_gameService.Go("east");
-					break;
-				case "south":
-				case "s":
-					_gameService.Go("south");
-					break;
-				case "west":
-				case "w":
-					_gameService.Go("west");
-					break;
-				case "go":
-				case "cd":
-					_gameService.Go(option);
-					break;
-				#endregion
 				#region Character Actions
 				case "inventory":
 				case "i":
@@ -79,7 +59,33 @@ namespace ConsoleAdventure.Project.Controllers
 				case "r":
 					_gameService.Reset();
 					break;
+				#endregion
+				#region Directional Actions
+				case "go":
+				case "cd":
+					_gameService.Go(option);
+					break;
+				default:
+					_gameService.Go(command);
+					break;
+					// case "north":
+					// case "n":
+					// 	_gameService.Go("north");
+					// 	break;
+					// case "east":
+					// case "e":
+					// 	_gameService.Go("east");
+					// 	break;
+					// case "south":
+					// case "s":
+					// 	_gameService.Go("south");
+					// 	break;
+					// case "west":
+					// case "w":
+					// 	_gameService.Go("west");
+					// 	break;
 					#endregion
+
 			}
 		}
 
@@ -87,9 +93,11 @@ namespace ConsoleAdventure.Project.Controllers
 		private void Print()
 		{
 			Console.Clear();
+			System.Console.WriteLine(_gameService.GetGameDetails());
+
 			foreach (string m in _gameService.Messages)
 			{
-				System.Console.WriteLine("m");
+				System.Console.WriteLine(m);
 			}
 			_gameService.Messages.Clear();
 		}

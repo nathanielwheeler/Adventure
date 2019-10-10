@@ -9,19 +9,19 @@ namespace ConsoleAdventure.Project.Models
 
 
 		//NOTE Make yo rooms here...
-		public void Setup(int mode)
+		public void Setup(string mode)
 		{
 			switch (mode)
 			{
-				case 0:
-					SetupBasicGame();
+				case "mvp":
+					SetupMVP();
 					return;
-				case 1:
-					SetupCoolGame();
+				case "maze":
+					SetupMaze();
 					return;
 			}
 		}
-		public void SetupBasicGame()
+		internal void SetupMVP()
 		{
 			//Room Initializations
 			Room start = new Room(
@@ -42,17 +42,18 @@ namespace ConsoleAdventure.Project.Models
 			);
 			Room dennis = new Room(
 				"Dennis",
-				"Ye arrive at Dennis. He wears a sporty frock coat and a long jimberjam. He paces about nervously. Obvious exits are NOT DENNIS."
+				"Ye arrive at Dennis. He wears a sporty frock coat and a long jimberjam. He paces about nervously."
 			);
 
 			//Add Connections
-			start.AddDoor("EAST", middle);
-			middle.AddDoor("WEST", start);
-			middle.AddDoor("NORTH", lose);
-			middle.AddDoor("SOUTH", win);
-			middle.AddDoor("DENNIS", dennis);
-			win.AddDoor("NORTH", middle);
-			dennis.AddDoor("NOT DENNIS", dennis);
+			start.AddExit("EAST", middle);
+			middle.AddExit("WEST", start);
+			middle.AddExit("NORTH", lose);
+			middle.AddExit("SOUTH", win);
+			middle.AddExit("DENNIS", dennis);
+			win.AddExit("NORTH", middle);
+			dennis.AddExit("NOT DENNIS", dennis);
+
 
 
 			//TODO Create Items
@@ -60,9 +61,9 @@ namespace ConsoleAdventure.Project.Models
 			//Set starting point
 			CurrentRoom = start;
 		}
-		public void SetupCoolGame()
+		internal void SetupMaze()
 		{
-			SetupBasicGame();
+			Setup("mvp");
 		}
 
 
@@ -73,7 +74,7 @@ namespace ConsoleAdventure.Project.Models
 
 		public Game()
 		{
-			Setup(0);
+			Setup("mvp");
 		}
 	}
 }
