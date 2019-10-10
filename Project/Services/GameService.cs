@@ -11,14 +11,20 @@ namespace ConsoleAdventure.Project
 
 		public List<string> Messages { get; set; }
 
+
+
+		#region Directional Action
 		public void Go(string direction)
 		{
+			//change destination
+			_game.CurrentRoom = _game.CurrentRoom.Go(direction);
 
+			//if failed to go anywhere, stop code execution
 		}
-		public void Help()
-		{
-			throw new System.NotImplementedException();
-		}
+
+
+		#endregion
+		#region Character Actions
 
 		public void Inventory()
 		{
@@ -26,6 +32,29 @@ namespace ConsoleAdventure.Project
 		}
 
 		public void Look()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		///<summary>When taking an item be sure the item is in the current room before adding it to the player inventory, Also don't forget to remove the item from the room it was picked up in</summary>
+		public void TakeItem(string itemName)
+		{
+			throw new System.NotImplementedException();
+		}
+		///<summary>
+		///No need to Pass a room since Items can only be used in the CurrentRoom
+		///Make sure you validate the item is in the room or player inventory before
+		///being able to use the item
+		///</summary>
+		public void UseItem(string itemName)
+		{
+			throw new System.NotImplementedException();
+		}
+
+		#endregion
+		#region Game Actions
+
+		public void Help()
 		{
 			throw new System.NotImplementedException();
 		}
@@ -48,23 +77,8 @@ namespace ConsoleAdventure.Project
 		{
 			throw new System.NotImplementedException();
 		}
-		///<summary>When taking an item be sure the item is in the current room before adding it to the player inventory, Also don't forget to remove the item from the room it was picked up in</summary>
-		public void TakeItem(string itemName)
-		{
-			throw new System.NotImplementedException();
-		}
-		///<summary>
-		///No need to Pass a room since Items can only be used in the CurrentRoom
-		///Make sure you validate the item is in the room or player inventory before
-		///being able to use the item
-		///</summary>
-		public void UseItem(string itemName)
-		{
-			throw new System.NotImplementedException();
-		}
 
-
-
+		#endregion
 
 
 
