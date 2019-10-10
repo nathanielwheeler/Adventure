@@ -13,7 +13,11 @@ namespace ConsoleAdventure.Project.Controllers
 		//NOTE Makes sure everything is called to finish Setup and Starts the Game loop
 		public void Run()
 		{
-
+			while (true)
+			{
+				Print();
+				GetUserInput();
+			}
 		}
 
 		//NOTE Gets the user input, calls the appropriate command, and passes on the option if needed.
@@ -25,13 +29,65 @@ namespace ConsoleAdventure.Project.Controllers
 			string option = input.Substring(input.IndexOf(" ") + 1).Trim();
 			//NOTE this will take the user input and parse it into a command and option.
 			//IE: take silver key => command = "take" option = "silver key"
-
+			switch (command)
+			{
+				#region Directions
+				case "north":
+				case "n":
+					_gameService.Go("north");
+					break;
+				case "east":
+				case "e":
+					_gameService.Go("east");
+					break;
+				case "south":
+				case "s":
+					_gameService.Go("south");
+					break;
+				case "west":
+				case "w":
+					_gameService.Go("west");
+					break;
+				case "go":
+				case "cd":
+					_gameService.Go(option);
+					break;
+				#endregion
+				case "help":
+				case "h":
+					_gameService.Help();
+					break;
+				case "inventory":
+				case "i":
+					_gameService.Inventory();
+					break;
+				case "look":
+				case "ls":
+				case "l":
+					_gameService.Look();
+					break;
+				case "q":
+				case "quit":
+				case "exit":
+				case "close":
+					_gameService.Quit();
+					break;
+				case "reset":
+				case "r":
+					_gameService.Reset();
+					break;
+			}
 		}
 
 		//NOTE this should print your messages for the game.
 		private void Print()
 		{
-
+			Console.Clear();
+			foreach (string m in _gameService.Messages)
+			{
+				System.Console.WriteLine("m");
+			}
+			_gameService.Messages.Clear();
 		}
 
 	}

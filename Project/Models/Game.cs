@@ -20,7 +20,6 @@ namespace ConsoleAdventure.Project.Models
 					return;
 			}
 		}
-
 		public void SetupBasicGame()
 		{
 			//Room Initializations
@@ -29,7 +28,7 @@ namespace ConsoleAdventure.Project.Models
 				"You are in a room.  It feels like a good place to start."
 			);
 			Room middle = new Room(
-				"The Middle",
+				"Purgatory",
 				"You are in a room.  It feels meh."
 			);
 			Room lose = new Room(
@@ -40,13 +39,20 @@ namespace ConsoleAdventure.Project.Models
 				"Destination: Victory",
 				"You are in a room.  It feels like victory snatched from the grasp of a narcoleptic infant."
 			);
+			Room dennis = new Room(
+				"Dennis",
+				"Ye arrive at Dennis. He wears a sporty frock coat and a long jimberjam. He paces about nervously. Obvious exits are NOT DENIS."
+			);
 
 			//Add Connections
-			start.AddDoor("East", middle);
-			middle.AddDoor("West", start);
-			middle.AddDoor("North", lose);
-			middle.AddDoor("South", win);
-			win.AddDoor("North", middle);
+			start.AddDoor("EAST", middle);
+			middle.AddDoor("WEST", start);
+			middle.AddDoor("NORTH", lose);
+			middle.AddDoor("SOUTH", win);
+			middle.AddDoor("DENNIS", dennis);
+			win.AddDoor("NORTH", middle);
+			dennis.AddDoor("NOT DENNIS", dennis);
+
 
 			//TODO Create Items
 

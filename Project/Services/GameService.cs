@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ConsoleAdventure.Project.Interfaces;
 using ConsoleAdventure.Project.Models;
@@ -16,7 +17,7 @@ namespace ConsoleAdventure.Project
 		}
 		public void Go(string direction)
 		{
-			throw new System.NotImplementedException();
+
 		}
 		public void Help()
 		{
@@ -35,13 +36,15 @@ namespace ConsoleAdventure.Project
 
 		public void Quit()
 		{
-			throw new System.NotImplementedException();
+			//TODO Call some sort of confirmation method
+			Environment.Exit(0);
 		}
 		///<summary>
 		///Restarts the game 
 		///</summary>
 		public void Reset()
 		{
+			//TODO Call some sort of confirmation method
 			throw new System.NotImplementedException();
 		}
 
