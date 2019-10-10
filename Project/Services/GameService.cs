@@ -18,7 +18,19 @@ namespace ConsoleAdventure.Project
 
 
 
-		#region Directional Action
+
+		#region Player Actions
+
+		///<summary>
+		///This method checks if the user's input returns true on any conditional actions.
+		///</summary>
+		public void CheckConditional(string command, string option)
+		{
+			//Check game conditionals
+			//Check room conditionals
+			//If nothing matches, notify user
+		}
+
 		public void Go(string direction)
 		{
 			//change destination
@@ -31,37 +43,15 @@ namespace ConsoleAdventure.Project
 				Messages.Add("You can't do that.");
 			}
 		}
-
-		// public void Fly(string airportCode)
-		// {
-		// 	//change destination
-		// 	string from = _game.CurrentAirport.Name;
-		// 	_game.CurrentAirport = _game.CurrentAirport.Fly(airportCode);
-		// 	string to = _game.CurrentAirport.Name;
-
-		// 	//If failed to go anywhere, stop code execution
-		// 	if (from == to)
-		// 	{
-		// 		Messages.Add("Invalid Destination");
-		// 		return;
-		// 	}
-		// 	Messages.Add($"Traveled from {from} to {to}");
-		// 	UnloadCargo();
-		// 	LoadCargo();
-		// }
-
-		#endregion
-		#region Character Actions
-
+		public void Look(string option)
+		{
+			throw new System.NotImplementedException();
+		}
 		public void Inventory()
 		{
 			throw new System.NotImplementedException();
 		}
 
-		public void Look()
-		{
-			throw new System.NotImplementedException();
-		}
 
 		///<summary>When taking an item be sure the item is in the current room before adding it to the player inventory, Also don't forget to remove the item from the room it was picked up in</summary>
 		public void TakeItem(string itemName)
@@ -73,9 +63,23 @@ namespace ConsoleAdventure.Project
 		///Make sure you validate the item is in the room or player inventory before
 		///being able to use the item
 		///</summary>
-		public void UseItem(string itemName)
+		public void UseItem(string option)
 		{
-			throw new System.NotImplementedException();
+			string input = option + " ";
+			string item = input.Substring(0, input.IndexOf(" "));
+			string target = input.Substring(input.IndexOf(" ") + 1).Trim();
+			_game.CurrentPlayer.Inventory.ForEach(i =>
+			{
+				if (i.Name == item)
+				{
+					//FIXME
+					return;
+				}
+				else
+				{
+					Messages.Add("Uh, what?");
+				}
+			});
 		}
 
 		#endregion

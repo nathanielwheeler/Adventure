@@ -56,7 +56,11 @@ namespace ConsoleAdventure.Project.Models
 
 
 
-			//TODO Create Items
+			//Create Items
+			Item key = new Item("key", "Probably UNLOCKs something.  I wonder what it could be.");
+
+			//Place Items in Rooms
+			start.Items.Add(key);
 
 			//Set starting point
 			CurrentRoom = start;

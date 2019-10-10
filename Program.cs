@@ -9,6 +9,7 @@ namespace ConsoleAdventure
 	{
 		public static void Main(string[] args)
 		{
+			Console.Clear();
 			System.Console.WriteLine(@"
 	 _____         _   ___  ___          _            
 	|_   _|       | |  |  \/  |         | |           

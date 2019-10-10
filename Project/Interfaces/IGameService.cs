@@ -26,7 +26,7 @@ namespace ConsoleAdventure.Project.Interfaces
 		//Print the list of items in the players inventory to the console
 		void Inventory();
 		//Display the CurrentRoom Description, Exits, and Items
-		void Look();
+		void Look(string option);
 
 		#endregion
 	}

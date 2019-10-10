@@ -10,6 +10,7 @@ namespace ConsoleAdventure.Project.Models
 		public string Description { get; set; }
 		public List<Item> Items { get; set; }
 		public Dictionary<string, IRoom> Exits { get; set; }
+		public Dictionary<string, IRoom> ConditionalExits { get; set; }
 		//TODO make a dictionary or list that can reference a conditional action command in this room.
 
 
@@ -26,6 +27,10 @@ namespace ConsoleAdventure.Project.Models
 		public void AddExit(string exit, IRoom room)
 		{
 			Exits.Add(exit, room);
+		}
+		public void AddConditionalExit(string exit, IRoom room)
+		{
+			ConditionalExits.Add(exit, room);
 		}
 
 		public string GetTemplate()
