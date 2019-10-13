@@ -49,7 +49,16 @@ namespace ConsoleAdventure.Project
 		}
 		public void Inventory()
 		{
-			throw new System.NotImplementedException();
+			List<Item> inv = _game.CurrentPlayer.Inventory;
+			Messages.Add("Inventory:");
+			if (inv.Count > 0)
+			{
+				inv.ForEach(item => Messages.Add("\t- " + item.Name.ToUpper()));
+			}
+			else
+			{
+				Messages.Add("Your inventory is empty.");
+			}
 		}
 
 
