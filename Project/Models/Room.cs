@@ -33,11 +33,20 @@ namespace ConsoleAdventure.Project.Models
 			ConditionalExits.Add(exit, room);
 		}
 
+		public void AddItem(string name, string description)
+		{
+			Items.Add(new Item(name, description));
+		}
+
 		public string GetTemplate()
 		{
-			string template = $"\n\t{Name.ToUpper()}\n\n\t{Description}\n\n";
+			string template = $"\n\t{Name.ToUpper()}\n\n\t{Description}\n";
 			if (Exits.Count > 0)
 			{
+				foreach (var item in Items)
+				{
+					template += $"\tThere is a {item.Name.ToUpper()}.\n";
+				}
 				template += "\tObvious exits are:\n";
 				foreach (var exit in Exits)
 				{

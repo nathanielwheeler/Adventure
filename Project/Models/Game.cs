@@ -60,7 +60,7 @@ namespace ConsoleAdventure.Project.Models
 			Item key = new Item("key", "Probably UNLOCKs something.  I wonder what it could be.");
 
 			//Place Items in Rooms
-			start.Items.Add(key);
+			start.AddItem("key", "A key that probably unlocks something.");
 
 			//Set starting point
 			CurrentRoom = start;
