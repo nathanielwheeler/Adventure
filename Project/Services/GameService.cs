@@ -176,7 +176,9 @@ namespace Adventure
 		public void Reset()
 		{
 			//TODO Call some sort of confirmation method
-			throw new System.NotImplementedException();
+			// GameController gameController = new IGameController("easy");
+			Console.WriteLine("Sorry, can't reset yet.");
+			Environment.Exit(0);
 		}
 
 		public void Setup(string playerName)
