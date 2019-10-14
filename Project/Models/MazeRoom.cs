@@ -7,18 +7,15 @@ namespace Adventure.Models
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }
-		public List<IItem> Items { get; set; }
+		public List<IKey> Keys { get; set; }
 		public Dictionary<string, IRoom> Exits { get; set; }
-		public Dictionary<string, IConditional> Triggers { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+		public Dictionary<string, IRoom> ConditionalExits { get; set; }
 
 		public IRoom Go(string destination)
 		{
 			throw new System.NotImplementedException();
 		}
-		public bool IsLocked(string destination)
-		{
-			throw new System.NotImplementedException();
-		}
+
 		public string GetTemplate()
 		{
 			string exits = "";
@@ -34,7 +31,7 @@ namespace Adventure.Models
 		{
 			Name = name;
 			Description = description;
-			Items = new List<IItem>();
+			Keys = new List<IKey>();
 			Exits = new Dictionary<string, IRoom>();
 		}
 

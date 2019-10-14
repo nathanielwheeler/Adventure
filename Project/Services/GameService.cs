@@ -45,17 +45,26 @@ namespace Adventure
 			}
 
 		}
-		public void Look(string option)
+		public void Look(string target)
 		{
-			throw new System.NotImplementedException();
+			for (int i = 0; i < _game.CurrentRoom.Keys.Count; i++)
+			{
+				IKey item = _game.CurrentRoom.Keys[i];
+				if (target == item.Name)
+				{
+					string description = item.GetDescription();
+					Messages.Add(description);
+					return;
+				}
+			}
 		}
 		public void Inventory()
 		{
-			List<IItem> inv = _game.CurrentPlayer.Inventory;
+			List<IKey> keychain = _game.CurrentPlayer.Keychain;
 			Messages.Add("Inventory:");
-			if (inv.Count > 0)
+			if (keychain.Count > 0)
 			{
-				inv.ForEach(item => Messages.Add("\t- " + item.Name.ToUpper()));
+				keychain.ForEach(item => Messages.Add("\t- " + item.Name.ToUpper()));
 			}
 			else
 			{
@@ -72,15 +81,15 @@ namespace Adventure
 		{
 			//	Check if the item exists in the CurrentRoom
 			//		If the item exists, remove it from current room and add it to the inventory
-			IItem target;
-			for (int i = 0; i < _game.CurrentRoom.Items.Count; i++)
+			IKey target;
+			for (int i = 0; i < _game.CurrentRoom.Keys.Count; i++)
 			{
-				IItem item = _game.CurrentRoom.Items[i];
+				IKey item = _game.CurrentRoom.Keys[i];
 				if (item.Name == itemName)
 				{
 					target = item;
-					_game.CurrentPlayer.Inventory.Add(target);
-					_game.CurrentRoom.Items.Remove(target);
+					_game.CurrentPlayer.Keychain.Add(target);
+					_game.CurrentRoom.Keys.Remove(target);
 					Messages.Add($"You got a {item.Name.ToUpper()}!");
 					return;
 				}
@@ -93,21 +102,34 @@ namespace Adventure
 		///Make sure you validate the item is in the room or player inventory before
 		///being able to use the item
 		///</summary>
-		public void UseItem(string item)
+		public void UseKey(string option)
 		{
-			_game.CurrentPlayer.Inventory.ForEach(item =>
+			bool validLocation = false;
+			//Check if key is in inventory
+			_game.CurrentPlayer.Keychain.ForEach(key =>
 			{
-				if (_game.CurrentPlayer.Inventory.Contains(item))
+				int i = _game.CurrentPlayer.Keychain.IndexOf(key);
+				IRoom room = _game.CurrentRoom;
+				if (room.Exits.ContainsValue(key.TargetDestination))
 				{
-					//Check the item's conditional.
-					//Using the item should trigger a response.  This response is stored in the item as an Observer.
+					Messages.Add("You already unlocked that.");
+					validLocation = true;
 					return;
 				}
-				else
+				else if (key.Name == option && room == key.ValidRoom)
 				{
-					Messages.Add("Uh, what?");
+					IRoom destination = key.TargetDestination;
+					room.Exits.Add(key.TargetDirection, key.TargetDestination);
+					room.ConditionalExits.Remove(key.TargetDirection);
+					Messages.Add("Unlocked exit!");
+					validLocation = true;
+					return;
 				}
 			});
+			if (!validLocation)
+			{
+				Messages.Add("No applicable key.");
+			}
 		}
 
 		#endregion
@@ -121,7 +143,6 @@ namespace Adventure
 	GET to add an item to your inventory
 	USE to utilize an item in your inventory
 	INVENTORY to look at what's in your inventory
-	RESET to start over
 	QUIT to exit the game");
 		}
 

@@ -6,6 +6,6 @@ namespace Adventure.Interfaces
 	public interface IPlayer
 	{
 		string Name { get; set; }
-		List<IItem> Inventory { get; set; }
+		List<IKey> Keychain { get; set; }
 	}
 }

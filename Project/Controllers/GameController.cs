@@ -38,7 +38,7 @@ namespace Adventure.Controllers
 		//NOTE Gets the user input, calls the appropriate command, and passes on the option if needed.
 		public void GetUserInput()
 		{
-			Console.Write("What would you like to do?\n > ");
+			Console.Write("> ");
 			#region Command Parse
 			string input = Console.ReadLine().ToLower() + " ";
 			string command = input.Substring(0, input.IndexOf(" "));
@@ -63,9 +63,18 @@ namespace Adventure.Controllers
 					_gameService.TakeItem(option);
 					break;
 				case "use":
-					_gameService.UseItem(option);
+					switch (option)
+					{
+						case "key":
+							_gameService.UseKey(option);
+							break;
+						default:
+							_gameService.Messages.Add("You don't have that.");
+							break;
+					}
 					break;
 				case "inventory":
+				case "inv":
 				case "i":
 					_gameService.Inventory();
 					break;
@@ -96,7 +105,7 @@ namespace Adventure.Controllers
 					_gameService.Go(option);
 					break;
 				default:
-					_gameService.CheckConditional(command, option);//NOTE
+					_gameService.Messages.Add("Uh, what?");
 					break;
 					#endregion
 			}

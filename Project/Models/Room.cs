@@ -8,10 +8,9 @@ namespace Adventure.Models
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }
-		public List<IItem> Items { get; set; }
+		public List<IKey> Keys { get; set; }
 		public Dictionary<string, IRoom> Exits { get; set; }
 		public Dictionary<string, IRoom> ConditionalExits { get; set; }
-		public Dictionary<string, IConditional> Triggers { get; set; }
 
 
 		public IRoom Go(string destination)
@@ -32,20 +31,20 @@ namespace Adventure.Models
 			ConditionalExits.Add(exit, room);
 		}
 
-		public void AddItem(IItem item)
+		public void AddKey(IKey key)
 		{
-			Items.Add(item);
+			Keys.Add(key);
 		}
 
 		public string GetTemplate()
 		{
 			string template = $"\n\t{Name.ToUpper()}\n\n\t{Description}\n";
 
-			foreach (var item in Items)
+			foreach (var key in Keys)
 			{
-				template += $"\tThere is a {item.Name.ToUpper()}.\n";
+				template += $"\tThere is a {key.Name.ToUpper()}.\n";
 			}
-			template += "Exits are:\n";
+			template += "\tExits are:\n";
 			foreach (var exit in Exits)
 			{
 				template += "\t\t- " + exit.Key.ToUpper() + "\n";
@@ -61,7 +60,7 @@ namespace Adventure.Models
 		{
 			Name = name;
 			Description = description;
-			Items = new List<IItem>();
+			Keys = new List<IKey>();
 			Exits = new Dictionary<string, IRoom>();
 			ConditionalExits = new Dictionary<string, IRoom>();
 		}

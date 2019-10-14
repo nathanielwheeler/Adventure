@@ -8,9 +8,9 @@ namespace Adventure.Interfaces
 	{
 		string Name { get; set; }
 		string Description { get; set; }
-		List<IItem> Items { get; set; }
+		List<IKey> Keys { get; set; }
 		Dictionary<string, IRoom> Exits { get; set; }
-		Dictionary<string, IConditional> Triggers { get; set; }
+		Dictionary<string, IRoom> ConditionalExits { get; set; }
 		IRoom Go(string destination);
 		string GetTemplate();
 	}

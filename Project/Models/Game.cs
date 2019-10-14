@@ -16,9 +16,9 @@ namespace Adventure.Models
 				case "mvp":
 					SetupMVP();
 					return;
-				case "maze":
-					SetupMaze();
-					return;
+					// case "maze":
+					// 	SetupMaze();
+					// 	return;
 			}
 		}
 		internal void SetupMVP()
@@ -57,18 +57,15 @@ namespace Adventure.Models
 
 
 			//Create Items
-			Item key = new Item("key", "It's a headscratcher as to where this key goes to.");
+			IKey key = new Key("key", "It's a headscratcher as to where this key goes to.", "east", middle, start);
 
 			//Place Items in Rooms
-			start.AddItem(key);
+			start.AddKey(key);
 
 			//Set starting point
 			CurrentRoom = start;
 		}
-		internal void SetupMaze()
-		{
-			Setup("mvp");
-		}
+
 
 
 
