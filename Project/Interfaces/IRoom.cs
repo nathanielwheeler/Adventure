@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Adventure.Interfaces;
-using Adventure.Models;
 
 namespace Adventure.Interfaces
 {
@@ -11,6 +9,9 @@ namespace Adventure.Interfaces
 		List<IKey> Keys { get; set; }
 		Dictionary<string, IRoom> Exits { get; set; }
 		Dictionary<string, IRoom> ConditionalExits { get; set; }
+		public bool Death { get; set; }
+		public bool Victory { get; set; }
+
 		IRoom Go(string destination);
 		string GetTemplate();
 	}

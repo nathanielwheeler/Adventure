@@ -7,6 +7,7 @@ namespace Adventure.Controllers
 	public class GameController : IGameController
 	{
 		private GameService _gameService { get; set; }
+		public string PlayStatus { get; set; }
 
 		//NOTE Makes sure everything is called to finish Setup and Starts the Game loop
 		public void Run()
@@ -19,14 +20,38 @@ namespace Adventure.Controllers
 			{
 				playing = Play();
 			}
-
+			Console.Write("Would you like to play again? Y/N: ");
+			bool parsingPrompt = true;
+			while (parsingPrompt)
+			{
+				string response = Console.ReadLine().ToLower();
+				switch (response)
+				{
+					case "y":
+						_gameService.Reset();
+						parsingPrompt = false;
+						break;
+					case "n":
+						_gameService.Quit();
+						parsingPrompt = false;
+						break;
+					default:
+						parsingPrompt = true;
+						break;
+				}
+			}
 		}
 
 		private bool Play()
 		{
+			PlayStatus = _gameService.CheckPlayStatus();
 			Print();
+			if (PlayStatus == "win" || PlayStatus == "lose")
+			{
+				return false;
+			}
 			GetUserInput();
-			return _gameService.CheckPlayStatus();
+			return true;
 		}
 
 		//NOTE this should print your messages for the game.
@@ -125,6 +150,7 @@ namespace Adventure.Controllers
 		public GameController(string mode)
 		{
 			_gameService = new GameService(mode);
+			PlayStatus = "";
 		}
 	}
 }

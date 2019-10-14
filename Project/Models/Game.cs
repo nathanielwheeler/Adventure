@@ -6,14 +6,6 @@ namespace Adventure.Models
 	{
 		public IRoom CurrentRoom { get; set; }
 		public IPlayer CurrentPlayer { get; set; }
-		public bool Death { get; set; }
-		public bool Victory { get; set; }
-
-
-		//This function will end the game with a losing condition
-
-
-		//This function will end the game with a victory condition
 
 
 		//NOTE Make yo rooms here...
@@ -34,19 +26,27 @@ namespace Adventure.Models
 			//Room Initializations
 			Room start = new Room(
 				"The Hall of Journeys Yet To Begin",
-				"You are in a room.  It feels like a good place to start."
+				"You are in a room.  It feels like a good place to start.",
+				false,
+				false
 			);
 			Room middle = new Room(
 				"Crossroad",
-				"You are in a room.  There is a sign that says 'Do not go North!'"
+				"You are in a room.  There is a sign that says 'Do not go North!'",
+				false,
+				false
 			);
 			Room lose = new Room(
 				"The Room That Kills You When You Enter It",
-				"You are in a room.  It feels like you've just lost the game.  Which you did."
+				"You are in a room.  It feels like you've just lost the game.  Which you did.",
+				true,
+				false
 			);
 			Room win = new Room(
 				"Destination: Victory",
-				"You are in a room.  It feels like victory snatched from the grasp of a narcoleptic infant."
+				"You are in a room.  It feels like victory snatched from the grasp of a narcoleptic infant.",
+				false,
+				true
 			);
 
 			//Add Connections
@@ -77,8 +77,6 @@ namespace Adventure.Models
 		public Game(string mode)
 		{
 			Setup(mode);
-			Death = false;
-			Victory = false;
 		}
 	}
 }

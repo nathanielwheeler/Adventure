@@ -10,6 +10,8 @@ namespace Adventure.Models
 		public List<IKey> Keys { get; set; }
 		public Dictionary<string, IRoom> Exits { get; set; }
 		public Dictionary<string, IRoom> ConditionalExits { get; set; }
+		public bool Death { get; set; }
+		public bool Victory { get; set; }
 
 		public IRoom Go(string destination)
 		{
@@ -27,12 +29,14 @@ namespace Adventure.Models
 			return template;
 		}
 
-		public MazeRoom(string name, string description)
+		public MazeRoom(string name, string description, bool death, bool victory)
 		{
 			Name = name;
 			Description = description;
 			Keys = new List<IKey>();
 			Exits = new Dictionary<string, IRoom>();
+			Death = death;
+			Victory = victory;
 		}
 
 	}

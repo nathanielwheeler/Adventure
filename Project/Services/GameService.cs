@@ -16,21 +16,21 @@ namespace Adventure
 			return _game.CurrentRoom.GetTemplate();
 		}
 
-		public bool CheckPlayStatus()
+		public string CheckPlayStatus()
 		{
-			if (_game.Death == true)
+			if (_game.CurrentRoom.Death == true)
 			{
 				Messages.Add("You have died.");
-				return false;
+				return "lose";
 			}
-			else if (_game.Victory == true)
+			else if (_game.CurrentRoom.Victory == true)
 			{
 				Messages.Add("You have won!");
-				return false;
+				return "win";
 			}
 			else
 			{
-				return true;
+				return "";
 			}
 		}
 
