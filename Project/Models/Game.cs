@@ -57,7 +57,7 @@ namespace Adventure.Models
 
 
 			//Create Items
-			Item key = new Item("key", "Probably UNLOCKs something.  I wonder what it could be.");
+			Item key = new Item("key", "It's a headscratcher as to where this key goes to.");
 
 			//Place Items in Rooms
 			start.AddItem(key);

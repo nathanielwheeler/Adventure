@@ -6,5 +6,6 @@ namespace Adventure.Interfaces
 	{
 		string Name { get; set; }
 		string Description { get; set; }
+
 	}
 }

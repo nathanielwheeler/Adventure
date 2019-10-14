@@ -99,6 +99,7 @@ namespace Adventure
 			{
 				if (_game.CurrentPlayer.Inventory.Contains(item))
 				{
+					//Check the item's conditional.
 					//Using the item should trigger a response.  This response is stored in the item as an Observer.
 					return;
 				}
@@ -114,7 +115,14 @@ namespace Adventure
 
 		public void Help()
 		{
-			throw new System.NotImplementedException();
+			Messages.Add(@"Commands:
+	GO to move in a direction
+	LOOK to get something's description
+	GET to add an item to your inventory
+	USE to utilize an item in your inventory
+	INVENTORY to look at what's in your inventory
+	RESET to start over
+	QUIT to exit the game");
 		}
 
 		public void Quit()
