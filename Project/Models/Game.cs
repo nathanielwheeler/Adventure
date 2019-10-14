@@ -32,7 +32,7 @@ namespace Adventure.Models
 			);
 			Room middle = new Room(
 				"Crossroad",
-				"You are in a room.  There is a sign that says 'Do not go North!'",
+				"You are in a room.  There is a sign that says 'Don't go North!'",
 				false,
 				false
 			);
@@ -44,7 +44,7 @@ namespace Adventure.Models
 			);
 			Room win = new Room(
 				"Destination: Victory",
-				"You are in a room.  It feels like victory snatched from the grasp of a narcoleptic infant.",
+				"You are in a room.  Oh hey, it seems you found what you needed, whatever that was.",
 				false,
 				true
 			);
@@ -54,7 +54,6 @@ namespace Adventure.Models
 			middle.AddExit("west", start);
 			middle.AddExit("north", lose);
 			middle.AddExit("south", win);
-			win.AddExit("north", middle);
 
 
 			//Create Items
