@@ -29,8 +29,8 @@ namespace Adventure.Models
 				"You are in a room.  It feels like a good place to start."
 			);
 			Room middle = new Room(
-				"Purgatory",
-				"You are in a room.  It feels meh."
+				"Crossroad",
+				"You are in a room.  There is a sign that says 'Do not go North!'"
 			);
 			Room lose = new Room(
 				"The Room That Kills You When You Enter It",
@@ -40,20 +40,13 @@ namespace Adventure.Models
 				"Destination: Victory",
 				"You are in a room.  It feels like victory snatched from the grasp of a narcoleptic infant."
 			);
-			Room dennis = new Room(
-				"Dennis",
-				"Ye arrive at Dennis. He wears a sporty frock coat and a long jimberjam. He paces about nervously."
-			);
 
 			//Add Connections
 			start.AddConditionalExit("east", middle);
 			middle.AddExit("west", start);
 			middle.AddExit("north", lose);
 			middle.AddExit("south", win);
-			middle.AddExit("dennis", dennis);
 			win.AddExit("north", middle);
-			dennis.AddExit("not dennis", dennis);
-
 
 
 			//Create Items
