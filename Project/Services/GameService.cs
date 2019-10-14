@@ -51,6 +51,11 @@ namespace Adventure
 			{
 				Messages.Add("You can't do that.");
 			}
+			if (_game.CurrentRoom is RiddleRoom)
+			{
+				RiddleRoom r = (RiddleRoom)_game.CurrentRoom;
+				r.Riddle();
+			}
 
 		}
 		public void Look(string target)
@@ -100,13 +105,16 @@ namespace Adventure
 		{
 			//	Check if the item exists in the CurrentRoom
 			//		If the item exists, remove it from current room and add it to the inventory
-			IKey target;
+			// IKey target = _game.CurrentRoom.Keys.Find(k=> k.Name.ToLower() == itemName);
+			// if(target == null){
+
+			// }
 			for (int i = 0; i < _game.CurrentRoom.Keys.Count; i++)
 			{
 				IKey item = _game.CurrentRoom.Keys[i];
 				if (item.Name == itemName)
 				{
-					target = item;
+					target = item;//FIXME
 					_game.CurrentPlayer.Keychain.Add(target);
 					_game.CurrentRoom.Keys.Remove(target);
 					Messages.Add($"You got a {item.Name.ToUpper()}!");

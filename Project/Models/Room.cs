@@ -11,8 +11,21 @@ namespace Adventure.Models
 		public List<IKey> Keys { get; set; }
 		public Dictionary<string, IRoom> Exits { get; set; }
 		public Dictionary<string, IRoom> ConditionalExits { get; set; }
+
+		public Dictionary<IKey, KeyValuePair<string, IRoom>> lockedExits { get; set; }
+		public Dictionary<IKey, string> RoomAlts { get; set; }
+
 		public bool Death { get; set; }
 		public bool Victory { get; set; }
+
+		public void Use(IKey key)
+		{
+			//if lockedExits.containsKey(key)
+			//Exits.add(lockedExits[key].key, lockedExits[key].value)
+			//if hiddenKeys.containsKey
+
+		}
+
 
 
 		public IRoom Go(string destination)
