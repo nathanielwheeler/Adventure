@@ -20,12 +20,16 @@ namespace Adventure.Models
 
 		public string GetTemplate()
 		{
-			string exits = "";
+			string template = "";
+			template += $"You are in a triangular room.  {Description}\nEach exit has a number above it.  The exit numbers are ";
 			foreach (var exit in Exits)
 			{
-				exits += "\t" + exit.Value.Name + "\n";
+				template += exit.Key;
 			}
-			string template = $"{Name}\n\n{Description}\n\nThere are three doors labelled:\n{exits}";
+			foreach (var exit in ConditionalExits)
+			{
+				template += exit.Key + "(locked)";
+			}
 			return template;
 		}
 

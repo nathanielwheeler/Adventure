@@ -16,9 +16,9 @@ namespace Adventure.Models
 				case "mvp":
 					SetupMVP();
 					return;
-					// case "maze":
-					// 	SetupMaze();
-					// 	return;
+				case "maze":
+					// SetupMaze();
+					return;
 			}
 		}
 		internal void SetupMVP()
@@ -65,6 +65,17 @@ namespace Adventure.Models
 			//Set starting point
 			CurrentRoom = start;
 		}
+
+		// internal void SetupMaze()
+		// {
+		// 	//Room Initializations
+		// 	MazeRoom 
+		// 	//Add Connections
+
+		// 	//Set starting point
+
+
+		// }
 
 
 
