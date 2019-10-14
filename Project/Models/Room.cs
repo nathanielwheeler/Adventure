@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using ConsoleAdventure.Project.Interfaces;
+using Adventure.Interfaces;
 
-namespace ConsoleAdventure.Project.Models
+namespace Adventure.Models
 {
 	public class Room : IRoom
 	{
@@ -11,7 +11,7 @@ namespace ConsoleAdventure.Project.Models
 		public List<Item> Items { get; set; }
 		public Dictionary<string, IRoom> Exits { get; set; }
 		public Dictionary<string, IRoom> ConditionalExits { get; set; }
-		//TODO make a dictionary or list that can reference a conditional action command in this room.
+		public Dictionary<string, IConditional> Triggers { get; set; }
 
 
 		public IRoom Go(string destination)
@@ -22,7 +22,6 @@ namespace ConsoleAdventure.Project.Models
 			}
 			return this;
 		}
-
 
 		public void AddExit(string exit, IRoom room)
 		{
@@ -41,17 +40,19 @@ namespace ConsoleAdventure.Project.Models
 		public string GetTemplate()
 		{
 			string template = $"\n\t{Name.ToUpper()}\n\n\t{Description}\n";
-			if (Exits.Count > 0)
+
+			foreach (var item in Items)
 			{
-				foreach (var item in Items)
-				{
-					template += $"\tThere is a {item.Name.ToUpper()}.\n";
-				}
-				template += "\tObvious exits are:\n";
-				foreach (var exit in Exits)
-				{
-					template += "\t\t" + exit.Key.ToUpper() + "\n";
-				}
+				template += $"\tThere is a {item.Name.ToUpper()}.\n";
+			}
+			template += "Exits are:\n";
+			foreach (var exit in Exits)
+			{
+				template += "\t\t- " + exit.Key.ToUpper() + "\n";
+			}
+			foreach (var exit in ConditionalExits)
+			{
+				template += "\t\t- " + exit.Key.ToUpper() + " (locked)\n";
 			}
 			return template;
 		}
@@ -62,6 +63,7 @@ namespace ConsoleAdventure.Project.Models
 			Description = description;
 			Items = new List<Item>();
 			Exits = new Dictionary<string, IRoom>();
+			ConditionalExits = new Dictionary<string, IRoom>();
 		}
 	}
 }

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using ConsoleAdventure.Project.Interfaces;
-using ConsoleAdventure.Project.Models;
+using Adventure.Interfaces;
+using Adventure.Models;
 
-namespace ConsoleAdventure.Project
+namespace Adventure
 {
 	public class GameService : IGameService
 	{
@@ -34,6 +34,7 @@ namespace ConsoleAdventure.Project
 		public void Go(string direction)
 		{
 			//change destination
+
 			string from = _game.CurrentRoom.Name;
 			_game.CurrentRoom = _game.CurrentRoom.Go(direction);
 			string to = _game.CurrentRoom.Name;
@@ -42,6 +43,7 @@ namespace ConsoleAdventure.Project
 			{
 				Messages.Add("You can't do that.");
 			}
+
 		}
 		public void Look(string option)
 		{
@@ -91,16 +93,13 @@ namespace ConsoleAdventure.Project
 		///Make sure you validate the item is in the room or player inventory before
 		///being able to use the item
 		///</summary>
-		public void UseItem(string option)
+		public void UseItem()
 		{
-			string input = option + " ";
-			string item = input.Substring(0, input.IndexOf(" "));
-			string target = input.Substring(input.IndexOf(" ") + 1).Trim();
-			_game.CurrentPlayer.Inventory.ForEach(i =>
+			_game.CurrentPlayer.Inventory.ForEach(item =>
 			{
-				if (i.Name == item)
+				if (_game.CurrentPlayer.Inventory.Contains(item))
 				{
-					//FIXME
+					//Using the item should trigger a response.  This response is stored in the item as an Observer.
 					return;
 				}
 				else

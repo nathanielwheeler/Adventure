@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ConsoleAdventure.Project.Interfaces
+namespace Adventure.Interfaces
 {
 	public interface IItem
 	{

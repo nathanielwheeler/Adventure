@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using ConsoleAdventure.Project.Interfaces;
-using ConsoleAdventure.Project.Models;
+using Adventure.Interfaces;
+using Adventure.Models;
 
-namespace ConsoleAdventure.Project.Controllers
+namespace Adventure.Controllers
 {
 
 	public class GameController : IGameController
@@ -63,7 +63,7 @@ namespace ConsoleAdventure.Project.Controllers
 					_gameService.TakeItem(option);
 					break;
 				case "use":
-					_gameService.UseItem(option);
+					_gameService.UseItem();
 					break;
 				case "inventory":
 				case "i":

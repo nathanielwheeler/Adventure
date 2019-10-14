@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using ConsoleAdventure.Project.Interfaces;
-using ConsoleAdventure.Project.Models;
+using Adventure.Interfaces;
 
-namespace Adventure.Project.Models
+namespace Adventure.Models
 {
 	public class MazeRoom : IRoom
 	{
@@ -10,12 +9,16 @@ namespace Adventure.Project.Models
 		public string Description { get; set; }
 		public List<Item> Items { get; set; }
 		public Dictionary<string, IRoom> Exits { get; set; }
+		public Dictionary<string, IConditional> Triggers { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
 		public IRoom Go(string destination)
 		{
 			throw new System.NotImplementedException();
 		}
-
+		public bool IsLocked(string destination)
+		{
+			throw new System.NotImplementedException();
+		}
 		public string GetTemplate()
 		{
 			string exits = "";

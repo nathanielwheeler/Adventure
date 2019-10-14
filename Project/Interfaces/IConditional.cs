@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Adventure.Project.Interfaces
+namespace Adventure.Interfaces
 {
 	public interface IConditional
 	{

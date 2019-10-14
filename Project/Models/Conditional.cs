@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Adventure.Project.Interfaces;
+using Adventure.Interfaces;
 
-namespace Adventure.Project.Models
+namespace Adventure.Models
 {
 	public class Conditional : IConditional
 	{

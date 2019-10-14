@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
-using ConsoleAdventure.Project;
-using ConsoleAdventure.Project.Controllers;
+using Adventure;
+using Adventure.Controllers;
 
 namespace ConsoleAdventure
 {

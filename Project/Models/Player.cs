@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using ConsoleAdventure.Project.Interfaces;
+using Adventure.Interfaces;
 
-namespace ConsoleAdventure.Project.Models
+namespace Adventure.Models
 {
 	public class Player : IPlayer
 	{

@@ -1,6 +1,6 @@
-using ConsoleAdventure.Project.Interfaces;
+using Adventure.Interfaces;
 
-namespace ConsoleAdventure.Project.Models
+namespace Adventure.Models
 {
 	public class Game : IGame
 	{
@@ -46,7 +46,7 @@ namespace ConsoleAdventure.Project.Models
 			);
 
 			//Add Connections
-			start.AddExit("east", middle);
+			start.AddConditionalExit("east", middle);
 			middle.AddExit("west", start);
 			middle.AddExit("north", lose);
 			middle.AddExit("south", win);

@@ -1,4 +1,4 @@
-namespace ConsoleAdventure.Project.Interfaces
+namespace Adventure.Interfaces
 {
 	public interface IGameController
 	{

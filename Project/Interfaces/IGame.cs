@@ -1,6 +1,6 @@
-using ConsoleAdventure.Project.Models;
+using Adventure.Models;
 
-namespace ConsoleAdventure.Project.Interfaces
+namespace Adventure.Interfaces
 {
 	public interface IGame
 	{

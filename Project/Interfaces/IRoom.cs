@@ -1,7 +1,8 @@
 using System.Collections.Generic;
-using ConsoleAdventure.Project.Models;
+using Adventure.Interfaces;
+using Adventure.Models;
 
-namespace ConsoleAdventure.Project.Interfaces
+namespace Adventure.Interfaces
 {
 	public interface IRoom
 	{
@@ -9,6 +10,7 @@ namespace ConsoleAdventure.Project.Interfaces
 		string Description { get; set; }
 		List<Item> Items { get; set; }
 		Dictionary<string, IRoom> Exits { get; set; }
+		Dictionary<string, IConditional> Triggers { get; set; }
 		IRoom Go(string destination);
 		string GetTemplate();
 	}
