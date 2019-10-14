@@ -1,25 +1,29 @@
 using System;
-using System.Collections.Generic;
 using Adventure.Interfaces;
-using Adventure.Models;
 
 namespace Adventure.Controllers
 {
 
 	public class GameController : IGameController
 	{
-		private GameService _gameService = new GameService();
+		private GameService _gameService { get; set; }
 
 		//NOTE Makes sure everything is called to finish Setup and Starts the Game loop
 		public void Run()
 		{
-			System.Console.Write("Enter your name > ");
-			_gameService.Setup(Console.ReadLine());
-			while (true)
+			bool playing = true;
+			while (playing)
 			{
-				Print();
-				GetUserInput();
+				playing = Play();
 			}
+
+		}
+
+		private bool Play()
+		{
+			Print();
+			GetUserInput();
+			return _gameService.CheckPlayStatus();
 		}
 
 		//NOTE this should print your messages for the game.
@@ -113,5 +117,11 @@ namespace Adventure.Controllers
 
 
 
+
+
+		public GameController(string mode)
+		{
+			_gameService = new GameService(mode);
+		}
 	}
 }

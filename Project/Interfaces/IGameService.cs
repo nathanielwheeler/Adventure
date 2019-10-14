@@ -6,7 +6,7 @@ namespace Adventure.Interfaces
 	public interface IGameService
 	{
 		List<string> Messages { get; }
-		void Setup(string playerName);
+		// void Setup(string playerName);
 
 		void Reset();
 

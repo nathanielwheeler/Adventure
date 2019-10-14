@@ -20,8 +20,31 @@ namespace ConsoleAdventure
 	
 	
 			");
-			Thread.Sleep(750);
-			new GameController().Run();
+			Console.Write("Choose a mode:\n\t- EASY mode\n\t- HARD mode\n> ");
+			string mode = "";
+			while (mode == "")
+			{
+				string modeParse = Console.ReadLine().ToLower();
+				switch (modeParse)
+				{
+					case "mvp":
+					case "easy":
+					case "easy mode":
+						mode = "mvp";
+						break;
+					case "maze":
+					case "hard":
+					case "hard mode":
+						mode = "maze";
+						break;
+					default:
+						System.Console.WriteLine("That's not a game mode, but I wish it was.");
+						break;
+				}
+			}
+			GameController gameController = new GameController(mode);
+			gameController.Run();
+
 		}
 	}
 }

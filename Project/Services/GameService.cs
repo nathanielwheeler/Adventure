@@ -16,6 +16,24 @@ namespace Adventure
 			return _game.CurrentRoom.GetTemplate();
 		}
 
+		public bool CheckPlayStatus()
+		{
+			if (_game.Death == true)
+			{
+				Messages.Add("You have died.");
+				return false;
+			}
+			else if (_game.Victory == true)
+			{
+				Messages.Add("You have won!");
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+
 
 
 
@@ -160,10 +178,10 @@ namespace Adventure
 			throw new System.NotImplementedException();
 		}
 
-		public void Setup(string playerName)
-		{
-			_game.CurrentPlayer = new Player(playerName);
-		}
+		// public void Setup(string playerName)
+		// {
+		// 	_game.CurrentPlayer = new Player(playerName);
+		// }
 
 		#endregion
 
@@ -172,9 +190,9 @@ namespace Adventure
 
 
 
-		public GameService()
+		public GameService(string mode)
 		{
-			_game = new Game();
+			_game = new Game(mode);
 			Messages = new List<string>();
 		}
 	}

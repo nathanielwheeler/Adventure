@@ -6,6 +6,14 @@ namespace Adventure.Models
 	{
 		public IRoom CurrentRoom { get; set; }
 		public IPlayer CurrentPlayer { get; set; }
+		public bool Death { get; set; }
+		public bool Victory { get; set; }
+
+
+		//This function will end the game with a losing condition
+
+
+		//This function will end the game with a victory condition
 
 
 		//NOTE Make yo rooms here...
@@ -66,9 +74,11 @@ namespace Adventure.Models
 
 
 
-		public Game()
+		public Game(string mode)
 		{
-			Setup("mvp");
+			Setup(mode);
+			Death = false;
+			Victory = false;
 		}
 	}
 }
