@@ -11,6 +11,9 @@ namespace Adventure.Controllers
 		//NOTE Makes sure everything is called to finish Setup and Starts the Game loop
 		public void Run()
 		{
+			System.Console.Write("Enter name: ");
+			string name = Console.ReadLine();
+			_gameService.Setup(name);
 			bool playing = true;
 			while (playing)
 			{

@@ -39,16 +39,6 @@ namespace Adventure
 
 		#region Player Actions
 
-		///<summary>
-		///This method checks if the user's input returns true on any conditional actions.
-		///</summary>
-		public void CheckConditional(string command, string option)
-		{
-			//Check game conditionals
-			//Check room conditionals
-			//If nothing matches, notify user
-		}
-
 		public void Go(string direction)
 		{
 			//change destination
@@ -67,14 +57,25 @@ namespace Adventure
 		{
 			for (int i = 0; i < _game.CurrentRoom.Keys.Count; i++)
 			{
-				IKey item = _game.CurrentRoom.Keys[i];
-				if (target == item.Name)
+				IKey key = _game.CurrentRoom.Keys[i];
+				if (target == key.Name)
 				{
-					string description = item.GetDescription();
+					string description = key.GetDescription();
 					Messages.Add(description);
 					return;
 				}
 			}
+			for (int i = 0; i < _game.CurrentPlayer.Keychain.Count; i++)
+			{
+				IKey key = _game.CurrentPlayer.Keychain[i];
+				if (target == key.Name)
+				{
+					string description = key.GetDescription();
+					Messages.Add(description);
+					return;
+				}
+			}
+			Messages.Add("Look at what now?");
 		}
 		public void Inventory()
 		{
@@ -178,10 +179,10 @@ namespace Adventure
 			throw new System.NotImplementedException();
 		}
 
-		// public void Setup(string playerName)
-		// {
-		// 	_game.CurrentPlayer = new Player(playerName);
-		// }
+		public void Setup(string playerName)
+		{
+			_game.CurrentPlayer = new Player(playerName);
+		}
 
 		#endregion
 

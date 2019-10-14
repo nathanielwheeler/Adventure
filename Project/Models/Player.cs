@@ -11,7 +11,7 @@ namespace Adventure.Models
 
 		public Player(string name)
 		{
-			Name = "Nathan";
+			Name = name;
 			Keychain = new List<IKey>();
 		}
 	}
