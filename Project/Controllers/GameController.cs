@@ -28,7 +28,8 @@ namespace Adventure.Controllers
 				switch (response)
 				{
 					case "y":
-						_gameService.Reset();
+						System.Console.WriteLine("Bold of you to assume that I was able to figure out how to reset the game.");
+						// _gameService.Reset();
 						parsingPrompt = false;
 						break;
 					case "n":
@@ -36,10 +37,13 @@ namespace Adventure.Controllers
 						parsingPrompt = false;
 						break;
 					default:
+						Console.WriteLine("Invalid Input.");
 						parsingPrompt = true;
 						break;
 				}
+
 			}
+			Environment.Exit(0);
 		}
 
 		private bool Play()
@@ -137,7 +141,7 @@ namespace Adventure.Controllers
 					_gameService.Go(option);
 					break;
 				default:
-					_gameService.Messages.Add("Uh, what?");
+					_gameService.Messages.Add($"I don't know '{command + " " + option}'");
 					break;
 					#endregion
 			}
