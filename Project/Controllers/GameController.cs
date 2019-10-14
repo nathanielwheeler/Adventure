@@ -63,7 +63,7 @@ namespace Adventure.Controllers
 					_gameService.TakeItem(option);
 					break;
 				case "use":
-					_gameService.UseItem();
+					_gameService.UseItem(option);
 					break;
 				case "inventory":
 				case "i":

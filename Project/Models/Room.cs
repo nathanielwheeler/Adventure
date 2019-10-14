@@ -8,7 +8,7 @@ namespace Adventure.Models
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }
-		public List<Item> Items { get; set; }
+		public List<IItem> Items { get; set; }
 		public Dictionary<string, IRoom> Exits { get; set; }
 		public Dictionary<string, IRoom> ConditionalExits { get; set; }
 		public Dictionary<string, IConditional> Triggers { get; set; }
@@ -32,9 +32,9 @@ namespace Adventure.Models
 			ConditionalExits.Add(exit, room);
 		}
 
-		public void AddItem(string name, string description)
+		public void AddItem(IItem item)
 		{
-			Items.Add(new Item(name, description));
+			Items.Add(item);
 		}
 
 		public string GetTemplate()
@@ -61,7 +61,7 @@ namespace Adventure.Models
 		{
 			Name = name;
 			Description = description;
-			Items = new List<Item>();
+			Items = new List<IItem>();
 			Exits = new Dictionary<string, IRoom>();
 			ConditionalExits = new Dictionary<string, IRoom>();
 		}

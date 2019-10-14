@@ -51,7 +51,7 @@ namespace Adventure
 		}
 		public void Inventory()
 		{
-			List<Item> inv = _game.CurrentPlayer.Inventory;
+			List<IItem> inv = _game.CurrentPlayer.Inventory;
 			Messages.Add("Inventory:");
 			if (inv.Count > 0)
 			{
@@ -72,10 +72,10 @@ namespace Adventure
 		{
 			//	Check if the item exists in the CurrentRoom
 			//		If the item exists, remove it from current room and add it to the inventory
-			Item target;
+			IItem target;
 			for (int i = 0; i < _game.CurrentRoom.Items.Count; i++)
 			{
-				Item item = _game.CurrentRoom.Items[i];
+				IItem item = _game.CurrentRoom.Items[i];
 				if (item.Name == itemName)
 				{
 					target = item;
@@ -93,7 +93,7 @@ namespace Adventure
 		///Make sure you validate the item is in the room or player inventory before
 		///being able to use the item
 		///</summary>
-		public void UseItem()
+		public void UseItem(string item)
 		{
 			_game.CurrentPlayer.Inventory.ForEach(item =>
 			{

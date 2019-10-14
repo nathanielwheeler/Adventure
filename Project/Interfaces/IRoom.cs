@@ -8,7 +8,7 @@ namespace Adventure.Interfaces
 	{
 		string Name { get; set; }
 		string Description { get; set; }
-		List<Item> Items { get; set; }
+		List<IItem> Items { get; set; }
 		Dictionary<string, IRoom> Exits { get; set; }
 		Dictionary<string, IConditional> Triggers { get; set; }
 		IRoom Go(string destination);
