@@ -114,9 +114,8 @@ namespace Adventure
 				IKey item = _game.CurrentRoom.Keys[i];
 				if (item.Name == itemName)
 				{
-					target = item;//FIXME
-					_game.CurrentPlayer.Keychain.Add(target);
-					_game.CurrentRoom.Keys.Remove(target);
+					_game.CurrentPlayer.Keychain.Add(item);
+					_game.CurrentRoom.Keys.Remove(item);
 					Messages.Add($"You got a {item.Name.ToUpper()}!");
 					return;
 				}
